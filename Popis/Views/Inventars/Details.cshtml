@@ -1,0 +1,37 @@
+﻿@model Popis.Models.Inventar
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Detalji</h1>
+
+<div>
+    <h6>Inventar</h6>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Kreirano)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Kreirano)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Zavrseno)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Zavrseno)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Lokacija)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Lokacija.Naziv)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.id" class="btn btn-primary">Izmeni</a> |
+    <a asp-action="Index" class="btn btn-primary">Nazad</a>
+
+</div>

@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Popis.Models.Korisnik>
+
+
+
+<h1>Lista svih korisnika</h1>
+
+<p>
+    <a asp-controller="Korisniks" asp-action="Create" class="btn btn-primary">
+        <i class="fas fa-plus"></i> &nbsp; Kreiraj novog korisnika
+    </a>
+
+</p>
+<form method="get" asp-action="Index">
+    <p>
+        <input type="search" placeholder="Unesi ime ili email korisnika..." value="@ViewData["GetKorisnik"]" name="search" style="width:500px;"/>
+        <input type="submit" value="Pretrazi" class="btn btn-primary"/>
+        <a asp-action="Index"> Prikazi sve korisnike</a>
+    </p>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Naziv)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telefon)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Naziv)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefon)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                <a asp-controller="Korisniks" asp-route-id="@item.id" asp-action="Edit" class="btn btn-primary">
+                    <i class="fas fa-edit"></i> Izmeni
+                </a>
+                <a asp-controller="Korisniks" asp-action="Details" asp-route-id="@item.id" class="btn"><i class="fas fa-th-list"></i>Detalji</a>
+                <a asp-controller="Korisniks" asp-route-id="@item.id" asp-action="Delete" class="btn btn-danger">
+                    <i class="fas fa-trash-alt"></i>  Obrisi
+                </a>
+
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

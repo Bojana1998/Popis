@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Popis.Models.Lokacija>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Lista svih lokacija</h1>
+
+<p>
+    <a asp-controller="Lokacijas" asp-action="Create" class="btn btn-primary">
+        <i class="fas fa-plus"></i> &nbsp; Kreiraj novu lokaciju
+    </a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Naziv)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Naziv)
+            </td>
+            <td>
+                <a asp-controller="Lokacijas" asp-route-id="@item.id" asp-action="Edit" class="btn btn-primary">
+                    <i class="fas fa-edit"></i> Izmeni
+                </a>
+                <a asp-controller="Lokacijas" asp-action="Details" asp-route-id="@item.id" class="btn"><i class="fas fa-th-list"></i>Detalji</a>
+                <a asp-controller="Lokacijas" asp-route-id="@item.id" asp-action="Delete" class="btn btn-danger">
+                    <i class="fas fa-trash-alt"></i>  Obrisi
+                </a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Popis.Models.Inventar>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Lista svih inventara</h1>
+
+<p>
+  
+    <a asp-controller="Inventars" asp-action="Create" class="btn btn-primary">
+        <i class="fas fa-plus"></i> &nbsp; Kreiraj novi inventar
+    </a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Kreirano)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Zavrseno)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lokacija)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kreirano)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Zavrseno)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lokacija.Naziv)
+            </td>
+            <td>
+                <a asp-controller="Inventars" asp-route-id="@item.id" asp-action="Edit" class="btn btn-primary">
+                    <i class="fas fa-edit"></i> Izmeni
+                </a>
+                <a asp-controller="Inventars" asp-action="Details" asp-route-id="@item.id" class="btn"><i class="fas fa-th-list"></i>Detalji</a>
+                <a asp-controller="Inventars" asp-route-id="@item.id" asp-action="Delete" class="btn btn-danger">
+                    <i class="fas fa-trash-alt"></i>  Obrisi
+                </a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

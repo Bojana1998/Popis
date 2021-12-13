@@ -1,0 +1,80 @@
+﻿@model IEnumerable<Popis.Models.Sredstvo>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+<h1>Lista svih sredstava</h1>
+
+<p>
+    <a asp-controller="Sredstvoes" asp-action="Create" class="btn btn-primary">
+        <i class="fas fa-plus"></i> &nbsp; Kreiraj novo sredstvo
+    </a>
+</p>
+
+<form method="post" asp-controller="Sredstvoes" asp-action="Export">
+    <input type="submit" value="Izvezi u Excel" class="btn btn-info" />
+</form>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Naziv)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Opis)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DatumNabavke)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DatumIsteka)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Korisnik)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lokacija)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Naziv)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Opis)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DatumNabavke)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DatumIsteka)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Korisnik.Naziv)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Lokacija.Naziv)
+                </td>
+                <td>
+                    <a asp-controller="Sredstvoes" asp-route-id="@item.id" asp-action="Edit" class="btn btn-primary">
+                        <i class="fas fa-edit"></i> Izmeni
+                    </a>
+                    <a asp-controller="Sredstvoes" asp-action="Details" asp-route-id="@item.id" class="btn"><i class="fas fa-th-list"></i>Detalji</a>
+                    <a asp-controller="Sredstvoes" asp-route-id="@item.id" asp-action="Delete" class="btn btn-danger">
+                        <i class="fas fa-trash-alt"></i>  Obrisi
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
